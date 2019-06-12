@@ -46,23 +46,23 @@ global.bruhdash = {
   },
 
   // returns a slice of array with n elements dropped from the beignning
-  drop: function(arr, ind = 1){
-    return arr.splice(ind);
+  drop: function(arr, n = 1){
+    return arr.splice(n);
   },
 
   // returns a slice of array with n elements dropped from the end
-  dropRight: function(arr, ind = 1) {
-    return arr.slice(0, arr.length - ind);
+  dropRight: function(arr, n = 1) {
+    return arr.slice(0, arr.length - n);
   },
 
   // creates a slice of an array with n elements taken from the beginning
-  take: function () {
-
+  take: function (arr, n = 1) {
+    return arr.slice(0, n);
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function () {
-
+  takeRight: function (arr, n = 1) {
+    return arr.splice(arr.length - n);
   },  
 
   // fills elements of array with specified value from the start index
