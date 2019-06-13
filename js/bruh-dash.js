@@ -11,33 +11,59 @@ global.bruhdash = {
 
   // returns the first element of an array
   first: function (arr) {
-    return arr.shift();
+    // return arr.shift();
+    return arr[0];
   },
 
   // returns the last element of an array
   last: function (arr) {
-    return arr.pop();
+    // return arr.pop();
+    newArr = arr[arr.length - 1];
+    return newArr;
   },
 
   // returns the index of the first matching element from left to right
   indexOf: function (arr, pos) {
-    return arr.indexOf(pos);
+    // return arr.indexOf(pos);
+    for(i = 0; i < arr.length; i++){
+      if(arr[i] === pos) {
+        return i;
+      }
+    }
+    return -1;
   },
 
   // returns the index of the first matching element from right to left
   lastIndexOf: function (arr, pos) {
-    return arr.lastIndexOf(pos);
+    // return arr.lastIndexOf(pos);
+    for(let i = 0; i < arr.length; i++){
+      if(arr[i] === pos) {
+        return i;
+      }
+    }
+    return -1;
   },
 
   // returns an array with all elements except for the last element
   initial: function (arr) {
     arr.pop();
     return arr;
+    // for(let i = 0; i < arr.length; i++) {
+    //   arr[i] = arr.length;
+    //   return arr;
+    // }
+    
   },
   
   // returns an array with all falsey values removed
-  compact: function() {
-
+  compact: function(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] == 0 || Number.isNaN(arr[i]) || arr[i] == null || arr[i] == false || arr[i] == "" || arr[i] == undefined) {
+          arr.splice(i, 1);
+          i--;
+      }
+    }
+    return arr;
   },
 
   // creates a slice of an array from the start index up to but not including the end index
@@ -61,7 +87,7 @@ global.bruhdash = {
   },
 
   // creates a slice of an array with n elements taken from the end
-  takeRight: function (arr, n = 1) {
+  takeRight: function (arr, n =  1) {
     return arr.splice(arr.length - n);
   },  
 
@@ -79,13 +105,20 @@ global.bruhdash = {
   },
 
   // removes all given values from an array
-  pull: function () {
-
+  pull: function (arr, ...val) {
+    for(let i = 0; i <arr.length; i++) {
+      if (val.includes(arr[i])) {
+        arr.splice(i, 1);
+        i--;
+      }
+    }
+    return arr;
   },
 
   // removes elements of an array corresponding to the given indices
-  pullAt: function () {
-
+  pullAt: function (arr) {
+    for(let i = 0; i < 0; i++) {
+    }
   },
 
   // creates an array excluding all the specified values
@@ -119,8 +152,10 @@ global.bruhdash = {
 
   // iterates over elements of a collection and invokes iteratee for each element
   // Note: this should work for arrays and objects
-  forEach: function() {
-
+  forEach: function(collection, func) {
+    for(let key in collection) {
+      func(collection[key]);
+    }
   },
 
   // creates an array of values by running each element in collection thru the iteratee
